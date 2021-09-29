@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - aws --version
+  build:
+    commands:
+      - |
+        if [ ! -d "./docker" ]
+        then
+          echo "No Docker present"
+          exit 0
+        fi
+
+        echo "Deploying Docker"
+        GEMFURY_REPO_URL="https://${GEMFURY_RO_TOKEN}@repo.fury.io/connectedbrewery/"       
+        aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNTID.dkr.ecr.$AWS_REGION.amazonaws.com
+
+        make -C docker deploy

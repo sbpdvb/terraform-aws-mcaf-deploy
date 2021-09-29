@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  build:
+    commands:
+      - |
+        if [ ! -d "./streams" ]
+        then
+          echo "No streaming application present"
+          exit 0
+        fi
+
+        echo "Deploying streaming application"
+        make -C streams deploy

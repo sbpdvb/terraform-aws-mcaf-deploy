@@ -29,6 +29,7 @@ module "codepipeline_role" {
   principal_type        = "Service"
   role_policy           = data.aws_iam_policy_document.codepipeline_role_policy.json
   tags                  = var.tags
+  permissions_boundary  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/PermissionsBoundary"
 }
 
 resource "aws_codepipeline" "codepipeline" {

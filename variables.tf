@@ -4,28 +4,10 @@ variable "alert_notifiers" {
   description = "Notifiers of the codebuild failure alerts"
 }
 
-variable "buildspec_docker" {
-  type        = string
-  default     = null
-  description = "Custom buildspec file for deploying docker"
-}
-
-variable "buildspec_frontend" {
-  type        = string
-  default     = null
-  description = "Custom buildspec file for deploying frontend"
-}
-
 variable "buildspec_functions" {
   type        = string
   default     = null
   description = "Custom buildspec file for deploying functions"
-}
-
-variable "buildspec_migrations" {
-  type        = string
-  default     = null
-  description = "Custom buildspec file for deploying database migrations"
 }
 
 variable "buildspec_streams" {
@@ -43,12 +25,6 @@ variable "environment_variables" {
   )
   default     = {}
   description = "Environment variables for the build and deploy scripts. Valid values for type: PARAMETER_STORE, PLAINTEXT."
-}
-
-variable "restore_kinesis_state" {
-  type        = bool
-  default     = true
-  description = "Option to restore the Kinesis Analytics state"
 }
 
 variable "subnet_ids" {

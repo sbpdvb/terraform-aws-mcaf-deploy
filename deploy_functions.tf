@@ -127,12 +127,6 @@ resource "aws_codebuild_project" "deploy_functions" {
     }
 
     environment_variable {
-      name  = "GEMFURY_RO_TOKEN"
-      type  = "PARAMETER_STORE"
-      value = "/gemfury/ro_token"
-    }
-
-    environment_variable {
       name  = "GITHUB_TOKEN"
       type  = "PARAMETER_STORE"
       value = "/github/token"

@@ -30,13 +30,14 @@ data "aws_iam_policy_document" "codebuild_source_policy" {
 }
 
 module "codebuild_role" {
-  source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.1"
+  source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.2"
   name                  = "${local.usecase}-source"
   create_policy         = true
   principal_identifiers = ["codebuild.amazonaws.com"]
   principal_type        = "Service"
   role_policy           = data.aws_iam_policy_document.codebuild_source_policy.json
   tags                  = var.tags
+  permissions_boundary  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/PermissionsBoundary"
 }
 
 resource "aws_codebuild_project" "source" {

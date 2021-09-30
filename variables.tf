@@ -1,9 +1,3 @@
-variable "alert_notifiers" {
-  type        = list(string)
-  default     = ["@mon-heineken@schubergphilis.com", "@opsgenie-heineken"]
-  description = "Notifiers of the codebuild failure alerts"
-}
-
 variable "buildspec_functions" {
   type        = string
   default     = null

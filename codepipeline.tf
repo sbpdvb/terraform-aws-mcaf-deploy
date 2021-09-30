@@ -33,7 +33,7 @@ module "codepipeline_role" {
 }
 
 resource "aws_codepipeline" "codepipeline" {
-  name     = local.usecase
+  name     = "${local.usecase}-uc}"
   role_arn = module.codepipeline_role.arn
   tags     = var.tags
 

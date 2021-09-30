@@ -4,7 +4,7 @@ locals {
   rds_usecase_username_rw = "${var.site_code}_${var.usecase_code}_rw"
   usecase                 = "${var.site_code}-${var.usecase_code}"
   usecase_bucket          = "${local.usecase}-deploy"
-  usecase_repository      = var.usecase_repository != null ? var.usecase_repository : "terraform-aws-uc-${var.usecase_code}"
+  usecase_repository      = var.usecase_repository != null ? var.usecase_repository : "dvb-${var.usecase_code}"
   usecase_version         = trimspace(var.usecase_version)
 }
 
@@ -20,10 +20,6 @@ data "github_release" "default" {
 
 data "aws_subnet" "private" {
   id = var.subnet_ids[0]
-}
-
-data "aws_security_group" "aurora" {
-  name = "${var.opco}-datalayer-aurora"
 }
 
 resource "null_resource" "trigger" {

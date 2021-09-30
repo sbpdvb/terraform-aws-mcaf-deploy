@@ -60,6 +60,9 @@ resource "aws_codepipeline" "codepipeline" {
     }
   }
 
+  stage {
+    name = "Deploy"
+
     action {
       name            = "Functions"
       category        = "Build"

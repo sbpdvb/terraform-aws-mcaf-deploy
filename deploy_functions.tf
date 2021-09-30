@@ -162,13 +162,4 @@ resource "aws_codebuild_project" "deploy_functions" {
       }
     }
   }
-
-  vpc_config {
-    subnets = var.subnet_ids
-    vpc_id  = data.aws_subnet.private.vpc_id
-
-    security_group_ids = [
-      data.aws_security_group.aurora.id
-    ]
-  }
 }

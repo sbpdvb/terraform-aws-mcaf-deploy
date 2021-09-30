@@ -1,11 +1,8 @@
 locals {
-  rds_usecase_schema      = "${var.site_code}_${var.usecase_code}"
-  rds_usecase_username_ro = "${var.site_code}_${var.usecase_code}_ro"
-  rds_usecase_username_rw = "${var.site_code}_${var.usecase_code}_rw"
-  usecase                 = "${var.site_code}-${var.usecase_code}"
-  usecase_bucket          = "${local.usecase}-deploy"
-  usecase_repository      = var.usecase_repository != null ? var.usecase_repository : "dvb-${var.usecase_code}"
-  usecase_version         = trimspace(var.usecase_version)
+  usecase            = "${var.usecase_environment}-${var.usecase_name}"
+  usecase_bucket     = "${local.usecase}-deploy"
+  usecase_repository = "dvb-${var.usecase_code}"
+  usecase_version    = trimspace(var.usecase_version)
 }
 
 data "aws_caller_identity" "current" {}

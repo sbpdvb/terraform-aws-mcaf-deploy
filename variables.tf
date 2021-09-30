@@ -1,13 +1,3 @@
-variable "opco" {
-  type        = string
-  description = "The operational company"
-}
-
-variable "site_code" {
-  type        = string
-  description = "The site code"
-}
-
 variable "alert_notifiers" {
   type        = list(string)
   default     = ["@mon-heineken@schubergphilis.com", "@opsgenie-heineken"]
@@ -66,9 +56,14 @@ variable "subnet_ids" {
   description = "The subnet ID list used for deployment"
 }
 
-variable "usecase_code" {
+variable "usecase_environment" {
   type        = string
-  description = "The usecase code"
+  description = "The usecase environment"
+}
+
+variable "usecase_name" {
+  type        = string
+  description = "The usecase name"
 }
 
 variable "usecase_repository" {

@@ -8,10 +8,6 @@ phases:
           echo "No functions present"
           exit 0
         fi
-        if [ ! -z "$GEMFURY_RO_TOKEN" ]; then
-          echo "Exported Gemfury token in the environment"
-          export GEMFURY_REPO_URL="https://${GEMFURY_RO_TOKEN}@repo.fury.io/connectedbrewery/"
-        fi
         if [ ! -z "$GITHUB_TOKEN" ]; then
           echo "Set the Github token in the global config file"
           git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"

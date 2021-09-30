@@ -78,34 +78,6 @@ resource "aws_codepipeline" "codepipeline" {
     }
 
     action {
-      name            = "Docker"
-      category        = "Build"
-      input_artifacts = ["source_output"]
-      owner           = "AWS"
-      provider        = "CodeBuild"
-      run_order       = 2
-      version         = "1"
-
-      configuration = {
-        ProjectName = "${local.usecase}-deploy-docker"
-      }
-    }
-
-    action {
-      name            = "Frontend"
-      category        = "Build"
-      input_artifacts = ["source_output"]
-      owner           = "AWS"
-      provider        = "CodeBuild"
-      run_order       = 2
-      version         = "1"
-
-      configuration = {
-        ProjectName = "${local.usecase}-deploy-frontend"
-      }
-    }
-
-    action {
       name            = "Functions"
       category        = "Build"
       input_artifacts = ["source_output"]
@@ -116,20 +88,6 @@ resource "aws_codepipeline" "codepipeline" {
 
       configuration = {
         ProjectName = "${local.usecase}-deploy-functions"
-      }
-    }
-
-    action {
-      name            = "Streams"
-      category        = "Build"
-      input_artifacts = ["source_output"]
-      owner           = "AWS"
-      provider        = "CodeBuild"
-      run_order       = 2
-      version         = "1"
-
-      configuration = {
-        ProjectName = "${local.usecase}-deploy-streams"
       }
     }
   }

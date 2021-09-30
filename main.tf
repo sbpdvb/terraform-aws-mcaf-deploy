@@ -19,18 +19,18 @@ data "aws_subnet" "private" {
   id = var.subnet_ids[0]
 }
 
-# resource "null_resource" "trigger" {
-#   triggers = {
-#     release_id = data.github_release.default.id
-#   }
+resource "null_resource" "trigger" {
+  triggers = {
+    release_id = data.github_release.default.id
+  }
 
-#   provisioner "local-exec" {
-#     command = "${path.module}/bin/trigger -project-name=${local.usecase} -source-version=${local.usecase_version}"
-#   }
+  provisioner "local-exec" {
+    command = "${path.module}/bin/trigger -project-name=${local.usecase} -source-version=${local.usecase_version}"
+  }
 
-#   depends_on = [
-#     aws_codebuild_project.deploy_functions,
-#     aws_codebuild_project.source,
-#     aws_codepipeline.codepipeline,
-#   ]
-# }
+  depends_on = [
+    aws_codebuild_project.deploy_functions,
+    aws_codebuild_project.source,
+    aws_codepipeline.codepipeline,
+  ]
+}

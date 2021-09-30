@@ -84,7 +84,7 @@ data "aws_iam_policy_document" "codebuild_deploy_functions_policy" {
 }
 
 module "codebuild_deploy_functions_role" {
-  source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.1"
+  source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.2"
   name                  = "${local.usecase}-deploy-functions"
   create_policy         = true
   principal_identifiers = ["codebuild.amazonaws.com"]

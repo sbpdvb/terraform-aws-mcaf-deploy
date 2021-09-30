@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "codepipeline_role_policy" {
 
 
 module "codepipeline_role" {
-  source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.1"
+  source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.2"
   name                  = "${local.usecase}-pipeline"
   create_policy         = true
   principal_identifiers = ["codepipeline.amazonaws.com"]

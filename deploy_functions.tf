@@ -139,16 +139,6 @@ resource "aws_codebuild_project" "deploy_functions" {
     }
 
     environment_variable {
-      name  = "OPCO"
-      value = var.opco
-    }
-
-    environment_variable {
-      name  = "SITE_CODE"
-      value = var.site_code
-    }
-
-    environment_variable {
       name  = "USECASE"
       value = local.usecase
     }

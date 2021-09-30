@@ -11,8 +11,8 @@ data "aws_region" "current" {}
 data "github_release" "default" {
   repository  = local.usecase_repository
   owner       = var.usecase_repository_owner
-  retrieve_by = "latest"
-  # release_tag = local.usecase_version
+  retrieve_by = "tag"
+  release_tag = local.usecase_version
 }
 
 data "aws_subnet" "private" {

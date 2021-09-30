@@ -29,11 +29,7 @@ resource "null_resource" "trigger" {
   }
 
   depends_on = [
-    aws_codebuild_project.deploy_docker,
-    aws_codebuild_project.deploy_frontend,
     aws_codebuild_project.deploy_functions,
-    aws_codebuild_project.deploy_migrations,
-    aws_codebuild_project.deploy_streams,
     aws_codebuild_project.source,
     aws_codepipeline.codepipeline,
   ]

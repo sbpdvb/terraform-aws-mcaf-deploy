@@ -60,23 +60,6 @@ resource "aws_codepipeline" "codepipeline" {
     }
   }
 
-  stage {
-    name = "Deploy"
-
-    action {
-      name            = "Migrations"
-      category        = "Build"
-      input_artifacts = ["source_output"]
-      owner           = "AWS"
-      provider        = "CodeBuild"
-      run_order       = 1
-      version         = "1"
-
-      configuration = {
-        ProjectName = "${local.usecase}-deploy-migrations"
-      }
-    }
-
     action {
       name            = "Functions"
       category        = "Build"

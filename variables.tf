@@ -79,7 +79,7 @@ variable "usecase_repository" {
 
 variable "usecase_repository_owner" {
   type        = string
-  default     = "connectedbrewery"
+  default     = "schubergphilis"
   description = "The GitHub repository owner of the usecase to be deployed"
 }
 

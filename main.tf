@@ -1,15 +1,14 @@
 locals {
-  usecase            = "${var.usecase_environment}-${var.usecase_name}"
-  usecase_bucket     = "${local.usecase}-deploy"
-  usecase_repository = local.usecase
-  usecase_version    = trimspace(var.usecase_version)
+  usecase         = "${var.usecase_environment}-${var.usecase_name}"
+  usecase_bucket  = "${local.usecase}-deploy"
+  usecase_version = trimspace(var.usecase_version)
 }
 
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 data "github_release" "default" {
-  repository  = local.usecase_repository
+  repository  = var.usecase_repository
   owner       = var.usecase_repository_owner
   retrieve_by = "tag"
   release_tag = local.usecase_version

@@ -38,8 +38,7 @@ variable "usecase_name" {
 
 variable "usecase_repository" {
   type        = string
-  default     = null
-  description = "Optional repository name if the GitHub repository has a non-default name"
+  description = "Repository name of the GitHub repository"
 }
 
 variable "usecase_repository_owner" {

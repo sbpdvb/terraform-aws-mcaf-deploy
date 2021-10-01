@@ -49,7 +49,7 @@ resource "aws_codebuild_project" "source" {
   source {
     buildspec       = file("${path.module}/buildspec/source.yaml")
     git_clone_depth = 1
-    location        = "https://github.com/${var.usecase_repository_owner}/${local.usecase_repository}"
+    location        = "https://github.com/${var.usecase_repository_owner}/${var.usecase_repository}"
     type            = "GITHUB"
   }
 

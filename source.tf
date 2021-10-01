@@ -41,7 +41,7 @@ module "codebuild_role" {
 }
 
 resource "aws_codebuild_project" "source" {
-  name         = var.workload_name
+  name         = "${var.workload_name}-source"
   description  = "Download source code of ${var.workload_name} and trigger deployment"
   service_role = module.codebuild_role.arn
   tags         = var.tags
@@ -49,7 +49,7 @@ resource "aws_codebuild_project" "source" {
   source {
     buildspec       = file("${path.module}/buildspec/source.yaml")
     git_clone_depth = 1
-    location        = "https://github.com/${var.workload_repository_owner}/${var.workload_repository}"
+    location        = "https://github.com/${var.workload_repository}"
     type            = "GITHUB"
   }
 

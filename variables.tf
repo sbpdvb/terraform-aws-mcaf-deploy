@@ -38,17 +38,12 @@ variable "workload_name" {
 
 variable "workload_repository" {
   type        = string
-  description = "Repository name of the GitHub repository"
-}
-
-variable "workload_repository_owner" {
-  type        = string
-  default     = "schubergphilis"
-  description = "The GitHub repository owner of the workload to be deployed"
+  description = "Repository full name of the GitHub repository"
 }
 
 variable "workload_version" {
   type        = string
+  default     = null
   description = "The version of the workload to deploy"
 }
 

@@ -137,10 +137,6 @@ resource "aws_codebuild_project" "deploy_functions" {
       value = var.workload_repository
     }
     environment_variable {
-      name  = "WORKLOAD_REPOSITORY_OWNER"
-      value = var.workload_repository_owner
-    }
-    environment_variable {
       name  = "WORKLOAD_VERSION"
       value = var.workload_version
     }

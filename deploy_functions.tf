@@ -124,10 +124,25 @@ resource "aws_codebuild_project" "deploy_functions" {
       name  = "AWS_ACCOUNTID"
       value = data.aws_caller_identity.current.account_id
     }
-
     environment_variable {
-      name  = "workload_NAME"
+      name  = "WORKLOAD_ENVIRONMENT"
+      value = var.workload_environment
+    }
+    environment_variable {
+      name  = "WORKLOAD_NAME"
       value = var.workload_name
+    }
+    environment_variable {
+      name  = "WORKLOAD_REPOSITORY"
+      value = var.workload_repository
+    }
+    environment_variable {
+      name  = "WORKLOAD_REPOSITORY_OWNER"
+      value = var.workload_repository_owner
+    }
+    environment_variable {
+      name  = "WORKLOAD_VERSION"
+      value = var.workload_version
     }
 
     dynamic "environment_variable" {

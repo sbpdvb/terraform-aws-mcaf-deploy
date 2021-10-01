@@ -26,6 +26,11 @@ variable "subnet_ids" {
   description = "The subnet ID list used for deployment"
 }
 
+variable "workload_environment" {
+  type        = string
+  description = "The environment this workload is being deployed in"
+}
+
 variable "workload_name" {
   type        = string
   description = "The workload name"

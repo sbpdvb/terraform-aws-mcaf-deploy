@@ -138,7 +138,7 @@ resource "aws_codebuild_project" "deploy_functions" {
     }
     environment_variable {
       name  = "WORKLOAD_VERSION"
-      value = var.workload_version
+      value = var.workload_version != null ? var.workload_version : "latest"
     }
 
     dynamic "environment_variable" {

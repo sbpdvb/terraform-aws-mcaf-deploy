@@ -33,7 +33,7 @@ module "codepipeline_role" {
 }
 
 resource "aws_codepipeline" "codepipeline" {
-  name     = var.workload_name
+  name     = "${var.workload_name}-workload"
   role_arn = module.codepipeline_role.arn
   tags     = var.tags
 

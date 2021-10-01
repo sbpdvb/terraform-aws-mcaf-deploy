@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - zip -r usecase.zip . -x '*.git*'
+      - zip -r workload.zip . -x '*.git*'
 artifacts:
   files:
-    - 'usecase.zip'
+    - 'workload.zip'

@@ -6,8 +6,8 @@ data "aws_iam_policy_document" "codebuild_source_policy" {
       "s3:PutObject"
     ]
     resources = [
-      "arn:aws:s3:::${local.usecase_bucket}",
-      "arn:aws:s3:::${local.usecase_bucket}/*"
+      "arn:aws:s3:::${local.deployment_bucket}",
+      "arn:aws:s3:::${local.deployment_bucket}/*"
     ]
   }
 
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "codebuild_source_policy" {
 
 module "codebuild_role" {
   source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.2"
-  name                  = "${local.usecase}-source"
+  name                  = "${var.workload_name}-source"
   create_policy         = true
   principal_identifiers = ["codebuild.amazonaws.com"]
   principal_type        = "Service"
@@ -41,26 +41,26 @@ module "codebuild_role" {
 }
 
 resource "aws_codebuild_project" "source" {
-  name         = local.usecase
-  description  = "Download source code of ${local.usecase} and trigger deployment"
+  name         = var.workload_name
+  description  = "Download source code of ${var.workload_name} and trigger deployment"
   service_role = module.codebuild_role.arn
   tags         = var.tags
 
   source {
     buildspec       = file("${path.module}/buildspec/source.yaml")
     git_clone_depth = 1
-    location        = "https://github.com/${var.usecase_repository_owner}/${var.usecase_repository}"
+    location        = "https://github.com/${var.workload_repository_owner}/${var.workload_repository}"
     type            = "GITHUB"
   }
 
   artifacts {
-    location = module.usecase_bucket.name
+    location = module.deployment_bucket.name
     type     = "S3"
   }
 
   logs_config {
     cloudwatch_logs {
-      group_name = "${local.usecase}-deploy-logs"
+      group_name = "${var.workload_name}-deploy-logs"
       status     = "ENABLED"
     }
   }

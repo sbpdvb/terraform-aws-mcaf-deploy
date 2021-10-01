@@ -6,10 +6,8 @@ data "aws_iam_policy_document" "codebuild_deploy_functions_policy" {
       "s3:PutObject"
     ]
     resources = [
-      "arn:aws:s3:::${local.usecase}",
-      "arn:aws:s3:::${local.usecase}/*",
-      "arn:aws:s3:::${local.usecase_bucket}",
-      "arn:aws:s3:::${local.usecase_bucket}/*"
+      "arn:aws:s3:::${local.deployment_bucket}",
+      "arn:aws:s3:::${local.deployment_bucket}/*"
     ]
   }
 
@@ -85,7 +83,7 @@ data "aws_iam_policy_document" "codebuild_deploy_functions_policy" {
 
 module "codebuild_deploy_functions_role" {
   source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.2"
-  name                  = "${local.usecase}-deploy-functions"
+  name                  = "${var.workload_name}-deploy-functions"
   create_policy         = true
   principal_identifiers = ["codebuild.amazonaws.com"]
   principal_type        = "Service"
@@ -95,7 +93,7 @@ module "codebuild_deploy_functions_role" {
 }
 
 resource "aws_codebuild_project" "deploy_functions" {
-  name         = "${local.usecase}-deploy-functions"
+  name         = "${var.workload_name}-deploy-functions"
   service_role = module.codebuild_deploy_functions_role.arn
   tags         = var.tags
 
@@ -110,7 +108,7 @@ resource "aws_codebuild_project" "deploy_functions" {
 
   logs_config {
     cloudwatch_logs {
-      group_name = "${local.usecase}-deploy-logs"
+      group_name = "${var.workload_name}-deploy-logs"
       status     = "ENABLED"
     }
   }
@@ -128,14 +126,8 @@ resource "aws_codebuild_project" "deploy_functions" {
     }
 
     environment_variable {
-      name  = "GITHUB_TOKEN"
-      type  = "PARAMETER_STORE"
-      value = "/github/token"
-    }
-
-    environment_variable {
-      name  = "USECASE"
-      value = local.usecase
+      name  = "workload_NAME"
+      value = var.workload_name
     }
 
     dynamic "environment_variable" {

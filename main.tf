@@ -1,17 +1,11 @@
-locals {
-  usecase         = "${var.usecase_environment}-${var.usecase_name}"
-  usecase_bucket  = "${local.usecase}-deploy"
-  usecase_version = trimspace(var.usecase_version)
-}
-
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 data "github_release" "default" {
-  repository  = var.usecase_repository
-  owner       = var.usecase_repository_owner
+  repository  = var.workload_repository
+  owner       = var.workload_repository_owner
   retrieve_by = "tag"
-  release_tag = local.usecase_version
+  release_tag = local.workload_version
 }
 
 data "aws_subnet" "private" {
@@ -24,7 +18,7 @@ resource "null_resource" "trigger" {
   }
 
   provisioner "local-exec" {
-    command = "${path.module}/bin/trigger -project-name=${local.usecase} -source-version=${local.usecase_version}"
+    command = "${path.module}/bin/trigger -project-name=${var.workload_name} -source-version=${local.workload_version}"
   }
 
   depends_on = [

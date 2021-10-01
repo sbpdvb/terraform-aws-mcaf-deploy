@@ -26,30 +26,25 @@ variable "subnet_ids" {
   description = "The subnet ID list used for deployment"
 }
 
-variable "usecase_environment" {
+variable "workload_name" {
   type        = string
-  description = "The usecase environment"
+  description = "The workload name"
 }
 
-variable "usecase_name" {
-  type        = string
-  description = "The usecase name"
-}
-
-variable "usecase_repository" {
+variable "workload_repository" {
   type        = string
   description = "Repository name of the GitHub repository"
 }
 
-variable "usecase_repository_owner" {
+variable "workload_repository_owner" {
   type        = string
   default     = "schubergphilis"
-  description = "The GitHub repository owner of the usecase to be deployed"
+  description = "The GitHub repository owner of the workload to be deployed"
 }
 
-variable "usecase_version" {
+variable "workload_version" {
   type        = string
-  description = "The version of the usecase to deploy"
+  description = "The version of the workload to deploy"
 }
 
 variable "tags" {

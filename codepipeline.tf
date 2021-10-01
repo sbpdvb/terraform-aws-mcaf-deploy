@@ -6,8 +6,8 @@ data "aws_iam_policy_document" "codepipeline_role_policy" {
       "s3:PutObject"
     ]
     resources = [
-      "arn:aws:s3:::${local.usecase_bucket}",
-      "arn:aws:s3:::${local.usecase_bucket}/*"
+      "arn:aws:s3:::${local.deployment_bucket}",
+      "arn:aws:s3:::${local.deployment_bucket}/*"
     ]
   }
 
@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "codepipeline_role_policy" {
 
 module "codepipeline_role" {
   source                = "github.com/schubergphilis/terraform-aws-mcaf-role?ref=v0.3.2"
-  name                  = "${local.usecase}-pipeline"
+  name                  = "${var.workload_name}-pipeline"
   create_policy         = true
   principal_identifiers = ["codepipeline.amazonaws.com"]
   principal_type        = "Service"
@@ -33,12 +33,12 @@ module "codepipeline_role" {
 }
 
 resource "aws_codepipeline" "codepipeline" {
-  name     = "${local.usecase}-uc"
+  name     = var.workload_name
   role_arn = module.codepipeline_role.arn
   tags     = var.tags
 
   artifact_store {
-    location = module.usecase_bucket.name
+    location = module.deployment_bucket.name
     type     = "S3"
   }
 
@@ -54,8 +54,8 @@ resource "aws_codepipeline" "codepipeline" {
       version          = "1"
 
       configuration = {
-        S3Bucket    = module.usecase_bucket.name
-        S3ObjectKey = "${local.usecase}/usecase.zip"
+        S3Bucket    = module.deployment_bucket.name
+        S3ObjectKey = "${var.workload_name}/workload.zip"
       }
     }
   }
@@ -73,7 +73,7 @@ resource "aws_codepipeline" "codepipeline" {
       version         = "1"
 
       configuration = {
-        ProjectName = "${local.usecase}-deploy-functions"
+        ProjectName = "${var.workload_name}-deploy-functions"
       }
     }
   }

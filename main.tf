@@ -2,8 +2,8 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 data "github_release" "default" {
-  repository  = var.workload_repository_parts[1]
-  owner       = var.workload_repository_parts[0]
+  repository  = local.workload_repository_parts[1]
+  owner       = local.workload_repository_parts[0]
   retrieve_by = var.workload_version != null ? "tag" : "latest"
   release_tag = local.workload_version
 }

@@ -33,7 +33,7 @@ module "codepipeline_role" {
 }
 
 resource "aws_codepipeline" "codepipeline" {
-  name     = "${var.workload_name}-workload"
+  name     = var.workload_name
   role_arn = module.codepipeline_role.arn
   tags     = var.tags
 
@@ -55,7 +55,7 @@ resource "aws_codepipeline" "codepipeline" {
 
       configuration = {
         S3Bucket    = module.deployment_bucket.name
-        S3ObjectKey = "${var.workload_name}/workload.zip"
+        S3ObjectKey = "${var.workload_name}-source/workload.zip"
       }
     }
   }

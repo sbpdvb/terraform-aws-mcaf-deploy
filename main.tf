@@ -1,7 +1,7 @@
 locals {
   usecase            = "${var.usecase_environment}-${var.usecase_name}"
   usecase_bucket     = "${local.usecase}-deploy"
-  usecase_repository = "dvb-${var.usecase_name}"
+  usecase_repository = local.usecase
   usecase_version    = trimspace(var.usecase_version)
 }
 

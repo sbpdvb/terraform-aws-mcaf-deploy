@@ -43,7 +43,6 @@ variable "workload_repository" {
 
 variable "workload_version" {
   type        = string
-  default     = null
   description = "The version of the workload to deploy"
 }
 

@@ -18,7 +18,7 @@ resource "null_resource" "trigger" {
   }
 
   provisioner "local-exec" {
-    command = "${path.module}/bin/trigger -project-name=${var.workload_name} -source-version=${local.workload_version}"
+    command = "${path.module}/bin/trigger -project-name=${var.workload_name}-source -source-version=${local.workload_version}"
   }
 
   depends_on = [

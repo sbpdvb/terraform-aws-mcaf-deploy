@@ -4,10 +4,10 @@ variable "buildspec_functions" {
   description = "Custom buildspec file for deploying functions"
 }
 
-variable "buildspec_streams" {
+variable "buildspec_gluejobs" {
   type        = string
   default     = null
-  description = "Custom buildspec file for deploying streams"
+  description = "Custom buildspec file for deploying gluejobs"
 }
 
 variable "environment_variables" {

@@ -80,7 +80,7 @@ resource "aws_codebuild_project" "deploy_gluejobs" {
 
   logs_config {
     cloudwatch_logs {
-      group_name = "${var.workload_name}-deploy-logs"
+      group_name = "${var.workload_name}-deploy-gluejobs-logs"
       status     = "ENABLED"
     }
   }

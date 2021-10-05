@@ -119,6 +119,10 @@ resource "aws_codebuild_project" "deploy_gluejobs" {
       name  = "WORKLOAD_VERSION"
       value = var.workload_version
     }
+    environment_variable {
+      name  = "GLUE_IAM_ROLE"
+      value = var.gluejob_iam_role_arn
+    }
 
     dynamic "environment_variable" {
       for_each = var.environment_variables

@@ -20,6 +20,13 @@ data "aws_iam_policy_document" "codebuild_deploy_gluejobs_policy" {
 
   statement {
     actions = [
+      "iam:PassRole"
+    ]
+    resources = ["${var.gluejob_iam_role_arn}"]
+  }
+
+  statement {
+    actions = [
       "ec2:CreateNetworkInterfacePermission",
       "ec2:CreateNetworkInterface",
       "ec2:DescribeDhcpOptions",

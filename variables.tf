@@ -21,6 +21,11 @@ variable "environment_variables" {
   description = "Environment variables for the build and deploy scripts. Valid values for type: PARAMETER_STORE, PLAINTEXT."
 }
 
+variable "gluejob_iam_role_arn" {
+  type    = string
+  default = null
+}
+
 variable "subnet_ids" {
   type        = list(string)
   description = "The subnet ID list used for deployment"

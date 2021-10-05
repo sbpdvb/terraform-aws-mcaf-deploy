@@ -13,13 +13,6 @@ data "aws_iam_policy_document" "codebuild_deploy_gluejobs_policy" {
 
   statement {
     actions = [
-      "ssm:GetParameters"
-    ]
-    resources = []
-  }
-
-  statement {
-    actions = [
       "glue:*"
     ]
     resources = ["*"]

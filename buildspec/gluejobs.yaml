@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - |
+        if [ ! -d "./gluejobs" ]; then
+          echo "No Glue Jobs present"
+          exit 0
+        fi
+        if [ ! -z "$GITHUB_TOKEN" ]; then
+          echo "Set the Github token in the global config file"
+          git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+        fi
+        echo "Deploying Functions"
+        make -C gluejobs deploy

@@ -51,18 +51,6 @@ data "aws_iam_policy_document" "codebuild_deploy_functions_policy" {
     resources = ["*"]
   }
 
-  statement {
-    actions = [
-      "greengrass:CreateDeployment",
-      "greengrass:GetCoreDefinitionVersion",
-      "greengrass:GetGroup",
-      "greengrass:GetGroupVersion",
-      "greengrass:ListGroups",
-      "iam:PassRole"
-    ]
-    resources = ["*"]
-  }
-
   dynamic "statement" {
     for_each = {
       for k, v in var.environment_variables : k => v if v.type == "PARAMETER_STORE"

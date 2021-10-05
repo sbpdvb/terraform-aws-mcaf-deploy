@@ -76,5 +76,19 @@ resource "aws_codepipeline" "codepipeline" {
         ProjectName = "${var.workload_name}-deploy-functions"
       }
     }
+
+    action {
+      name            = "GlueJobs"
+      category        = "Build"
+      input_artifacts = ["source_output"]
+      owner           = "AWS"
+      provider        = "CodeBuild"
+      run_order       = 2
+      version         = "1"
+
+      configuration = {
+        ProjectName = "${var.workload_name}-deploy-gluejobs"
+      }
+    }
   }
 }

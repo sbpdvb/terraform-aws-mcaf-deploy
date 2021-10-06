@@ -24,11 +24,17 @@ variable "environment_variables" {
 variable "gluejob_iam_role_arn" {
   type    = string
   default = null
+  description = "IAM Role used to deploy Glue Jobs"
 }
 
 variable "subnet_ids" {
   type        = list(string)
   description = "The subnet ID list used for deployment"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resources"
 }
 
 variable "workload_environment" {
@@ -49,9 +55,4 @@ variable "workload_repository" {
 variable "workload_version" {
   type        = string
   description = "The version of the workload to deploy"
-}
-
-variable "tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the resources"
 }

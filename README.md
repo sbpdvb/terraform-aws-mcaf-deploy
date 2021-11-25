@@ -1,4 +1,4 @@
-# terraform-aws-uc-deploy
+# terraform-aws-mcaf-deploy
 
 Usecase deployment module.
 

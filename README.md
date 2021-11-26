@@ -1,6 +1,6 @@
 # terraform-aws-mcaf-deploy
 
-Usecase deployment module.
+MCAF deployment module.
 
 ## Documentation
 The working of the Use Case deployment is described on [Confluence](https://sbp-heineken.atlassian.net/wiki/spaces/HOME/pages/964723249/Use+Case+development).

@@ -17,14 +17,15 @@ data "aws_iam_policy_document" "codebuild_deploy_gluejobs_policy" {
     ]
     resources = ["*"]
   }
-
-  statement {
-    actions = [
-      "iam:PassRole"
-    ]
-    resources = ["${var.gluejob_iam_role_arn}"]
+  dynamic "statement" {
+    for_each = var.gluejob_iam_role_arn == "" ? [] : [1]
+    content {
+      actions = [
+        "iam:PassRole"
+      ]
+      resources = ["${var.gluejob_iam_role_arn}"]
+    }
   }
-
   statement {
     actions = [
       "ec2:CreateNetworkInterfacePermission",

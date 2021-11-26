@@ -23,7 +23,7 @@ variable "environment_variables" {
 
 variable "gluejob_iam_role_arn" {
   type        = string
-  default     = null
+  default     = ""
   description = "IAM Role used to deploy Glue Jobs"
 }
 

@@ -22,9 +22,18 @@ variable "environment_variables" {
 }
 
 variable "gluejob_iam_role_arn" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
   description = "IAM Role used to deploy Glue Jobs"
+}
+
+variable "logging" {
+  type = object({
+    target_bucket = string
+    target_prefix = string
+  })
+  default     = null
+  description = "Logging configuration"
 }
 
 variable "subnet_ids" {

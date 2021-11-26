@@ -1,6 +1,6 @@
-# terraform-aws-uc-deploy
+# terraform-aws-mcaf-deploy
 
-Usecase deployment module.
+MCAF deployment module.
 
 ## Documentation
 The working of the Use Case deployment is described on [Confluence](https://sbp-heineken.atlassian.net/wiki/spaces/HOME/pages/964723249/Use+Case+development).
@@ -24,22 +24,17 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| opco | The operational company | `string` | n/a | yes |
-| site\_code | The site code | `string` | n/a | yes |
 | subnet\_ids | The subnet ID list used for deployment | `list(string)` | n/a | yes |
 | tags | A mapping of tags to assign to the resources | `map(string)` | n/a | yes |
-| usecase\_code | The usecase code | `string` | n/a | yes |
-| usecase\_version | The version of the usecase to deploy | `string` | n/a | yes |
-| alert\_notifiers | Notifiers of the codebuild failure alerts | `list(string)` | <pre>[<br>  "@mon-heineken@schubergphilis.com",<br>  "@opsgenie-heineken"<br>]</pre> | no |
-| buildspec\_docker | Custom buildspec file for deploying docker | `string` | `null` | no |
-| buildspec\_frontend | Custom buildspec file for deploying frontend | `string` | `null` | no |
+| workload\_environment | The environment this workload is being deployed in | `string` | n/a | yes |
+| workload\_name | The workload name | `string` | n/a | yes |
+| workload\_repository | Repository full name of the GitHub repository | `string` | n/a | yes |
+| workload\_version | The version of the workload to deploy | `string` | n/a | yes |
 | buildspec\_functions | Custom buildspec file for deploying functions | `string` | `null` | no |
-| buildspec\_migrations | Custom buildspec file for deploying database migrations | `string` | `null` | no |
-| buildspec\_streams | Custom buildspec file for deploying streams | `string` | `null` | no |
+| buildspec\_gluejobs | Custom buildspec file for deploying gluejobs | `string` | `null` | no |
 | environment\_variables | Environment variables for the build and deploy scripts. Valid values for type: PARAMETER\_STORE, PLAINTEXT. | <pre>map(<br>    object({<br>      type  = string<br>      value = string<br>    })<br>  )</pre> | `{}` | no |
-| restore\_kinesis\_state | Option to restore the Kinesis Analytics state | `bool` | `true` | no |
-| usecase\_repository | Optional repository name if the GitHub repository has a non-default name | `string` | `null` | no |
-| usecase\_repository\_owner | The GitHub repository owner of the usecase to be deployed | `string` | `"connectedbrewery"` | no |
+| gluejob\_iam\_role\_arn | IAM Role used to deploy Glue Jobs | `string` | `null` | no |
+| logging | Logging configuration | <pre>object({<br>    target_bucket = string<br>    target_prefix = string<br>  })</pre> | `null` | no |
 
 ## Outputs
 

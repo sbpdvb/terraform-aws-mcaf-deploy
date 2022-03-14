@@ -105,7 +105,7 @@ resource "aws_codebuild_project" "deploy_functions" {
     compute_type                = "BUILD_GENERAL1_MEDIUM"
     image                       = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
     image_pull_credentials_type = "CODEBUILD"
-    privileged_mode             = true
+    privileged_mode             = false
     type                        = "LINUX_CONTAINER"
 
     environment_variable {

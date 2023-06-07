@@ -1,8 +1,12 @@
 data "aws_iam_policy_document" "codepipeline_role_policy" {
   statement {
     actions = [
-      "s3:List*",
-      "s3:Get*",
+      "s3:ListBucket",
+      "s3:ListBucketVersions",
+      "s3:GetObject",
+      "s3:GetObjectAcl",
+      "s3:GetObjectAttributes",
+      "s3:GetObjectTagging",
       "s3:PutObject"
     ]
     resources = [
@@ -16,7 +20,7 @@ data "aws_iam_policy_document" "codepipeline_role_policy" {
       "codebuild:BatchGetBuilds",
       "codebuild:StartBuild"
     ]
-    resources = ["*"]
+    resources = ["arn:aws:codepipeline:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
   }
 }
 

@@ -3,7 +3,10 @@ data "aws_iam_policy_document" "codepipeline_role_policy" {
     actions = [
       "s3:ListBucket",
       "s3:ListBucketVersions",
-      "s3:Get*",
+      "s3:GetObject",
+      "s3:GetObjectAcl",
+      "s3:GetObjectAttributes",
+      "s3:GetObjectTagging",
       "s3:PutObject"
     ]
     resources = [

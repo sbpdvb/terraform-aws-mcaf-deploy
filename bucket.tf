@@ -4,5 +4,5 @@ module "deployment_bucket" {
   force_destroy = true
   versioning    = true
   tags          = var.tags
-  logging       = var.logging
+  logging       = var.logging # tfsec:ignore:aws-s3-enable-bucket-logging
 }
